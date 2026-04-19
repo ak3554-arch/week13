@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Breed Search</title>
+    <script>
+        function showBreed(str) {
+            if (str.length == 0) {
+                document.getElementById("result").innerHTML = "";
+                return;
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result").innerHTML = this.responseText;
+                }
+            };
+
+            xhttp.open("GET", "dogbreed.php?q=" + str, true);
+            xhttp.send();
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Dog Breed Search</h2>
+
+    Enter Dog Breed:
+    <input type="text" onkeyup="showBreed(this.value)">
+
+    <p id="result"></p>
+
+</body>
+</html>
